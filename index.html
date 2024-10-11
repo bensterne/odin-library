@@ -25,21 +25,28 @@
 
         .flex-container {
             display:flex;
-            gap:40px;
+            gap:30px;
             
         }
 
         .library {
-            width:50%;
+            width:75%;
 
         }
 
+        li{
+            line-height:30px;
+            margin-bottom:10px;
+        }
+
+        li button{
+            margin-left:10px;
+        }
         
         .subhead {
             display:flex;
             gap:20px;
         }
-
         button{
             cursor: pointer;
         }
@@ -47,6 +54,7 @@
         h2 {
             display:inline;
         }
+
 
         #form{
             width:50%;
@@ -101,14 +109,14 @@
             <h3>Add a Book</h3>
             <img id="close" src="close-line.svg">
             </div>
-            <label for="title">Title</label>
-            <input type="text" id="title">
-            <label for="author">Author</label>
-            <input type="text" id="author">
-            <label for="pages">Number of Pages</label>
-            <input type="number" id="pages">
+            <label for="title">Title*</label>
+            <input type="text" id="title" required>
+            <label for="author">Author*</label>
+            <input type="text" id="author" required>
+            <label for="pages">Number of Pages*</label>
+            <input type="number" id="pages" required>
             <fieldset>
-                <legend>Have you read it?</legend>
+                <legend>Have you read it?*</legend>
                   <input type="radio" id="yes" name="choice" value="true" required>
                   <label for="yes">Yes</label>
                   <input type="radio" id="no" name="choice" value="false" required>
