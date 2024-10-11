@@ -40,6 +40,10 @@
             gap:20px;
         }
 
+        button{
+            cursor: pointer;
+        }
+
         h2 {
             display:inline;
         }
@@ -58,8 +62,9 @@
             justify-content:space-between;
             align-items:center;
         }
-        .close{
+        #close{
             width:32px;
+            cursor: pointer;
         }
 
         label{
@@ -94,7 +99,7 @@
         <div id="form">
             <div class="form-head">
             <h3>Add a Book</h3>
-            <img class = "close" src="close-line.svg">
+            <img id="close" src="close-line.svg">
             </div>
             <label for="title">Title</label>
             <input type="text" id="title">

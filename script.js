@@ -34,4 +34,13 @@ const bookForm = document.getElementById('form');
 
 newBook.addEventListener("click", function() {
     bookForm.style.display = 'block';
+    newBook.style.cursor="default";
+    newBook.style.pointerEvents="none";
+})
+
+const closeButton = document.getElementById('close');
+closeButton.addEventListener("click", function() {
+    bookForm.style.display = 'none';
+    newBook.style.cursor="pointer";
+    newBook.style.pointerEvents="auto";
 })
