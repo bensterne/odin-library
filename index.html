@@ -51,7 +51,7 @@
         #form{
             width:50%;
             padding:30px;
-            border:1px solid #CCCCCC;
+            border:1px solid #e3e3e3;
             border-radius:20px;
             background-color: rgb(243, 243, 243);
             display:none;
@@ -109,12 +109,12 @@
             <input type="number" id="pages">
             <fieldset>
                 <legend>Have you read it?</legend>
-                  <input type="radio" id="yes" name="choice" value="option1" required>
+                  <input type="radio" id="yes" name="choice" value="true" required>
                   <label for="yes">Yes</label>
-                  <input type="radio" id="no" name="choice" value="option2" required>
+                  <input type="radio" id="no" name="choice" value="false" required>
                   <label for="no">No</label>
             </fieldset>
-            <button>Submit</button>
+            <button id="form-submit">Submit</button>
         </div>
     </div>
 </body>

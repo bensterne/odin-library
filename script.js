@@ -1,5 +1,6 @@
 
 const myLibrary = [];
+const booksId = document.getElementById('books');
 
 function Book(title, author, pages, read) {
 this.title = title;
@@ -13,18 +14,29 @@ this.info = function() {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
+    displayBooks();
 
 }
 
 const theHobbit = new Book("The Hobbit","J.R.R. Tolkien",295,false);
 addBookToLibrary(theHobbit);
 
-const booksId = document.getElementById('books');
+
 const newList = document.createElement('ul');
-for (var item of myLibrary){
-    const newListItem = document.createElement('li');
-    newListItem.textContent = item.info();
-    newList.appendChild(newListItem);
+
+function displayBooks() {
+    // Clear the current list
+    booksId.innerHTML = '';
+
+    // Create a new list and append each book as an item
+    const newList = document.createElement('ul');
+    for (const item of myLibrary) {
+        const newListItem = document.createElement('li');
+        newListItem.textContent = item.info();
+        newList.appendChild(newListItem);
+    }
+
+    booksId.appendChild(newList);
 }
 
 booksId.appendChild(newList);
@@ -44,3 +56,18 @@ closeButton.addEventListener("click", function() {
     newBook.style.cursor="pointer";
     newBook.style.pointerEvents="auto";
 })
+
+const submitButton = document.getElementById('form-submit');
+submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        const title = document.getElementById('title').value;
+        const author = document.getElementById('author').value;
+        const pages = document.getElementById('pages').value;
+        const yes = document.getElementById('yes').checked;
+        const ifRead  = (yes == true);
+
+       const newB  = new Book(title, author, pages, ifRead);
+       addBookToLibrary(newB);
+    }
+)
+
