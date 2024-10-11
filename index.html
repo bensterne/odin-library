@@ -11,29 +11,106 @@
             margin:0px;
             padding:40px;
         }
-        h1{
+
+        h2,h3,p{
+            margin:0px;
+            padding:0px;
+        }
+
+        h1 {
             margin:0px 0px 20px 0px;
             padding:0px;
 
         }
 
-        .subhead{
+        .flex-container {
+            display:flex;
+            gap:40px;
+            
+        }
+
+        .library {
+            width:50%;
+
+        }
+
+        
+        .subhead {
             display:flex;
             gap:20px;
         }
 
-        h2{
+        h2 {
             display:inline;
-            margin:0px;
-            padding:0px;
         }
+
+        #form{
+            width:50%;
+            padding:30px;
+            border:1px solid #CCCCCC;
+            border-radius:20px;
+            background-color: rgb(243, 243, 243);
+            display:none;
+        }
+
+        .form-head{
+            display: flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .close{
+            width:32px;
+        }
+
+        label{
+            display:block;
+            margin-top:20px;
+            margin-bottom:5px;
+        }
+
+        #form > input{
+            width:50%;
+        }
+
+        fieldset {
+            margin:20px 0;
+        }
+        fieldset label {
+            display:inline;
+            padding-bottom:10px;
+        }
+
     </style>
 <body>
-    <h1>Welcome to the library</h1>
-    <div class="subhead">
-    <h2>Your books</h2>
-    <button>New Book</button>
-    </div>  
-    <div id="books"></div>
+    <div class="flex-container">
+        <div class="library">
+            <h1>Welcome to the library</h1>
+            <div class="subhead">
+            <h2>Your books</h2>
+            <button id="new-book">New Book</button>
+            </div>  
+            <div id="books"></div>
+        </div>
+        <div id="form">
+            <div class="form-head">
+            <h3>Add a Book</h3>
+            <img class = "close" src="close-line.svg">
+            </div>
+            <label for="title">Title</label>
+            <input type="text" id="title">
+            <label for="author">Author</label>
+            <input type="text" id="author">
+            <label for="pages">Number of Pages</label>
+            <input type="number" id="pages">
+            <fieldset>
+                <legend>Have you read it?</legend>
+                  <input type="radio" id="yes" name="choice" value="option1" required>
+                  <label for="yes">Yes</label>
+                  <input type="radio" id="no" name="choice" value="option2" required>
+                  <label for="no">No</label>
+            </fieldset>
+            <button>Submit</button>
+        </div>
+    </div>
 </body>
 </html>

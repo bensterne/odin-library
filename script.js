@@ -28,3 +28,10 @@ for (var item of myLibrary){
 }
 
 booksId.appendChild(newList);
+
+const newBook = document.getElementById('new-book');
+const bookForm = document.getElementById('form');
+
+newBook.addEventListener("click", function() {
+    bookForm.style.display = 'block';
+})
