@@ -25,14 +25,16 @@ addBookToLibrary(theHobbit);
 const newList = document.createElement('ul');
 
 function displayBooks() {
-    // Clear the current list
     booksId.innerHTML = '';
 
-    // Create a new list and append each book as an item
     const newList = document.createElement('ul');
+    itemCount = 0;
     for (const item of myLibrary) {
         const newListItem = document.createElement('li');
         newListItem.textContent = item.info();
+        newListItem.id=itemCount;
+        const breakDiv = document.createElement('br');
+        newListItem.appendChild(breakDiv);
         const ifReadButton =  document.createElement('button');
         ifReadButton.textContent = "Change Read Status";
         ifReadButton.className = "if-read-button";
@@ -40,50 +42,50 @@ function displayBooks() {
         const removeButton =  document.createElement('button');
         removeButton.textContent = "Remove Book";
         removeButton.className = "remove-button";
+        itemCount++;
         newListItem.appendChild(removeButton);
         newList.appendChild(newListItem);
     }
 
     booksId.appendChild(newList);
+    const ifReadButtons = document.querySelectorAll('.if-read-button');
+    ifReadButtons.forEach(button => {
+        button.addEventListener('click', changeReadStatus);
+    });
+
+    const removeButtons = document.querySelectorAll('.remove-button');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', removeBook);
+    });
+    
 }
 
-booksId.appendChild(newList);
 
-function changeReadStatus(event) {
-    const item = event.target.parentElement.textContent.slice(0,-29);
-    console.log(item);
-    for (const i of myLibrary){
-        console.log(i);
-        console.log(i.info());
-        console.log(item);
-        console.log(i.read);
-        if (item === i.info()){
-            if(i.read){
-                i.read = false;
-            } else {
-                i.read = true;
-            }
-        }
-    }
-    displayBooks();
-
-}
-
-// Select all buttons with the class 'my-button'
 const ifReadButtons = document.querySelectorAll('.if-read-button');
 
-// Loop through each button and add an event listener
-ifReadButtons.forEach(button => {
-    button.addEventListener('click', changeReadStatus);
-});
+function changeReadStatus(event) {
+    const item = event.target.parentElement.id;
+    myLibrary[item].read = !myLibrary[item].read;
+    displayBooks();
+}
+    
+function removeBook(event) {
+    const item = event.target.parentElement.id;
+    myLibrary.splice(item,1);
+    displayBooks();
+}
+
+
 
 const newBook = document.getElementById('new-book');
 const bookForm = document.getElementById('form');
 
 newBook.addEventListener("click", function() {
-    bookForm.style.display = 'block';
-    newBook.style.cursor="default";
-    newBook.style.pointerEvents="none";
+    if (bookForm.style.display == 'none'|| bookForm.style.display === ''){
+        bookForm.style.display = 'block';
+    } else {
+        bookForm.style.display = 'none';
+    }
 })
 
 const closeButton = document.getElementById('close');
@@ -93,6 +95,8 @@ closeButton.addEventListener("click", function() {
     newBook.style.pointerEvents="auto";
 })
 
+// This shouldn't allow me to submit empty things.
+
 const submitButton = document.getElementById('form-submit');
 submitButton.addEventListener("click", function(event) {
         event.preventDefault();
@@ -100,9 +104,16 @@ submitButton.addEventListener("click", function(event) {
         const author = document.getElementById('author').value;
         const pages = document.getElementById('pages').value;
         const yes = document.getElementById('yes').checked;
+        const no = document.getElementById('yes').checked;
         const ifRead  = (yes == true);
 
-       const newB  = new Book(title, author, pages, ifRead);
-       addBookToLibrary(newB);
+       if (title && author && pages) { // Validate that the fields are not empty
+        const newB = new Book(title, author, pages, ifRead);
+        addBookToLibrary(newB);
+        document.getElementById('form').reset(); // Reset the form after submission
+        bookForm.style.display = 'none'; // Optionally hide the form after submission
+    } else {
+        alert("Please fill in all fields."); // Alert if validation fails
+    }
     }
 )

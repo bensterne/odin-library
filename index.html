@@ -26,6 +26,7 @@
         .flex-container {
             display:flex;
             gap:30px;
+            align-items: flex-start;
             
         }
 
@@ -34,15 +35,27 @@
 
         }
 
+        ul{
+            padding-left:0px;
+        }
+
         li{
+            list-style:none;
             line-height:30px;
             margin-bottom:10px;
+            padding:20px;
+            background-color: rgb(214, 214, 214);
+            border-radius:10px;
         }
 
         li button{
             margin-left:10px;
+    
         }
         
+        .if-read-button{
+            margin-left:0px;
+        }
         .subhead {
             display:flex;
             gap:20px;
@@ -104,7 +117,7 @@
             </div>  
             <div id="books"></div>
         </div>
-        <div id="form">
+        <form id="form">
             <div class="form-head">
             <h3>Add a Book</h3>
             <img id="close" src="close-line.svg">
@@ -123,7 +136,7 @@
                   <label for="no">No</label>
             </fieldset>
             <button id="form-submit">Submit</button>
-        </div>
+        </form>
     </div>
 </body>
 </html>
